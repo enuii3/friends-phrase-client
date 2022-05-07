@@ -1,11 +1,11 @@
 import { rest } from 'msw'
 import { v4 as uuidv4 } from 'uuid'
 
-process.env.NEXT_PUBLIC_RESTAPI_URL = 'http://127.0.0.1:8000/api'
+process.env.NEXT_PUBLIC_RESTAPI_URL = 'http://127.0.0.1:8000'
 
 export const handlers = [
   rest.get(
-    `${process.env.NEXT_PUBLIC_RESTAPI_URL}/phrase/`,
+    `${process.env.NEXT_PUBLIC_RESTAPI_URL}/api/phrase/`,
     (req, res, ctx) => {
       return res(
         ctx.status(200),
