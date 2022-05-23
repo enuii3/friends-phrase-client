@@ -1,3 +1,23 @@
+export type LoginUser = {
+  username: string
+}
+
+export type ErrorMessage = {
+  errorMessage?: string
+}
+
+export type Jwt = {
+  refresh: string
+  access: string
+}
+
+export type AccessToken = Pick<Jwt, 'access'>
+
+export type Cred = {
+  email: string
+  password: string
+}
+
 export type Phrases = {
   phrases: Phrase[]
 }
