@@ -35,7 +35,7 @@ const FormItemLanguage = ({ SelectLanguage, setSelectLanguage }) => {
       </FormControl>
       <div className="flex items-center">
         <Image
-          src={`/${SelectLanguage}.ico`}
+          src={`/${SelectLanguage}.svg`}
           alt={SelectLanguage}
           width={50}
           height={30}
