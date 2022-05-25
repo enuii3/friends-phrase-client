@@ -1,17 +1,12 @@
 import { useState } from 'react'
 import { useAppDispatch } from '../../app/store'
 import Button from '../atoms/Button'
-import {
-  fetchAsyncLoginUser,
-  selectErrorMessage,
-} from '../../features/user/userSlice'
-import { useAppSelector } from '../../app/store'
+import { fetchAsyncLoginUser } from '../../features/user/userSlice'
 
 const LoginCard: React.FC = () => {
   const dispatch = useAppDispatch()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const errorMessage = useAppSelector(selectErrorMessage)
 
   const login = async (e: React.FormEvent<HTMLElement>) => {
     e.preventDefault()
@@ -20,7 +15,6 @@ const LoginCard: React.FC = () => {
 
   return (
     <div className="flex flex-col my-4">
-      {errorMessage && <p className="mt-5 text-red-600">{errorMessage}</p>}
       <h2 className="text-center text-3xl font-extrabold text-gray-900">
         Login Page
       </h2>

@@ -33,4 +33,9 @@ export type Phrase = {
   updatedAt: string
 }
 
+export type ParamsPhrase = Pick<
+  Phrase,
+  'text' | 'textLanguage' | 'translatedWord' | 'translatedWordLanguage'
+>
+
 export type LanguageCode = 'en' | 'jp'
