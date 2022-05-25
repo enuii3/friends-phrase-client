@@ -65,13 +65,24 @@ const initialState: LoginUser & ErrorMessage = {
 export const userSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: {},
+  reducers: {
+    setErrorMessage(state, action: PayloadAction<ErrorMessage>) {
+      state.errorMessage = action.payload.errorMessage
+    },
+    resetErrorMessage(state) {
+      state.errorMessage = ''
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(
       fetchAsyncLoginUser.fulfilled,
       (state, action: PayloadAction<Jwt>) => {
         cookie.set('accesstoken', action.payload.access)
-        action.payload.access && (window.location.href = '/')
+        action.payload.access && history.back()
+        return {
+          ...state,
+          errorMessage: '',
+        }
       }
     )
     builder.addCase(
@@ -98,6 +109,7 @@ export const userSlice = createSlice({
   },
 })
 
+export const { setErrorMessage, resetErrorMessage } = userSlice.actions
 export const selectLoginUser = (state: RootState) => state.user.username
 export const selectErrorMessage = (state: RootState) => state.user.errorMessage
 
