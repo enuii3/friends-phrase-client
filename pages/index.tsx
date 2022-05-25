@@ -17,5 +17,6 @@ export const getStaticProps: GetStaticProps = async () => {
   const phrases = await getAllPhrasesData()
   return {
     props: { phrases },
+    revalidate: 1,
   }
 }

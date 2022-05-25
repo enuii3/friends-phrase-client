@@ -49,7 +49,7 @@ const CreatePhrase: React.FC<Phrase> = () => {
         }
       )
       if (res.status == 201) {
-        router.push('/')
+        window.location.href = '/'
       }
     } catch (error) {
       if (error.response.status == 401) {
