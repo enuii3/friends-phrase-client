@@ -3,18 +3,50 @@ import { RootState } from '../../app/store'
 import axios from 'axios'
 import {
   ErrorMessage,
-  LoginUser,
   AccessToken,
   Jwt,
-  Cred,
+  LoginUser,
+  ParamsLoginUser,
+  RegisterUser,
+  ParamsRegisterUser,
 } from '../../types/types'
 import Cookies from 'universal-cookie'
 
 const cookie = new Cookies()
 
+export const fetchAsyncRegisterUser = createAsyncThunk<
+  RegisterUser,
+  ParamsRegisterUser,
+  { rejectValue: ErrorMessage }
+>('user/register_user', async (params, { rejectWithValue }) => {
+  try {
+    const res = await axios.post(
+      `${process.env.NEXT_PUBLIC_RESTAPI_URL}/api/user/`,
+      params,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    )
+    return res.data as RegisterUser
+  } catch (error) {
+    if (
+      error.response.data.email[0] == 'user with this email already exists.'
+    ) {
+      return rejectWithValue({
+        errorMessage: 'メールアドレスは既に使用されています',
+      } as ErrorMessage)
+    }
+    return rejectWithValue({
+      errorMessage: 'アカウントの作成に失敗しました',
+    } as ErrorMessage)
+  }
+})
+
 export const fetchAsyncLoginUser = createAsyncThunk<
   Jwt,
-  Cred,
+  ParamsLoginUser,
   { rejectValue: ErrorMessage }
 >('user/login_user', async (params, { rejectWithValue }) => {
   try {
@@ -74,6 +106,16 @@ export const userSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    builder.addCase(fetchAsyncRegisterUser.fulfilled, () => {})
+    builder.addCase(
+      fetchAsyncRegisterUser.rejected,
+      (state, action: PayloadAction<ErrorMessage>) => {
+        return {
+          ...state,
+          errorMessage: action.payload.errorMessage,
+        }
+      }
+    )
     builder.addCase(
       fetchAsyncLoginUser.fulfilled,
       (state, action: PayloadAction<Jwt>) => {

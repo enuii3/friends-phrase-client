@@ -1,5 +1,24 @@
+export type RegisterUser = {
+  id: string
+  username: string
+  email: string
+  createdAt: string
+  updatedAt: string
+}
+
+export type ParamsRegisterUser = {
+  username: string
+  email: string
+  password: string
+}
+
 export type LoginUser = {
   username: string
+}
+
+export type ParamsLoginUser = {
+  email: string
+  password: string
 }
 
 export type ErrorMessage = {
@@ -12,11 +31,6 @@ export type Jwt = {
 }
 
 export type AccessToken = Pick<Jwt, 'access'>
-
-export type Cred = {
-  email: string
-  password: string
-}
 
 export type Phrases = {
   phrases: Phrase[]
