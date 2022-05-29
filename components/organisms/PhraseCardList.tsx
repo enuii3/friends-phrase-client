@@ -1,5 +1,7 @@
 import { Phrases } from '../../types/types'
 import PhraseCard from '../molecules/PhraseCard'
+import CardCase from '../atoms/CardCase'
+import Link from 'next/link'
 
 const PhraseCardList: React.VFC<Phrases> = ({ phrases }) => {
   return (
@@ -7,7 +9,13 @@ const PhraseCardList: React.VFC<Phrases> = ({ phrases }) => {
       {phrases &&
         phrases.map((phrase) => (
           <li key={phrase.id}>
-            <PhraseCard phrase={phrase} />
+            <Link href={`/phrases/${phrase.id}`}>
+              <a>
+                <CardCase hover={true}>
+                  <PhraseCard phrase={phrase} />
+                </CardCase>
+              </a>
+            </Link>
           </li>
         ))}
     </ul>
