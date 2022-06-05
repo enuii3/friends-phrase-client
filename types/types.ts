@@ -47,6 +47,16 @@ export type Phrase = {
   updatedAt: string
 }
 
+export type Comment = {
+  id: string
+  text: string
+  textLanguage: LanguageCode
+  createdAt: string
+  updatedAt: string
+  username: string
+  phrase: string
+}
+
 export type ParamsPhrase = Pick<
   Phrase,
   'text' | 'textLanguage' | 'translatedWord' | 'translatedWordLanguage'
