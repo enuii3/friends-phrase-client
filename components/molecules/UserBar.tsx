@@ -1,12 +1,12 @@
 import { formatDate } from '../../utils/formatDate'
-import { UserIcon } from '../atoms/UserIcon'
+import UserIcon from '../atoms/UserIcon'
 
 interface User {
   username: string
   updatedAt: string
 }
 
-export const UserBar: React.VFC<User> = ({ username, updatedAt }) => {
+const UserBar: React.VFC<User> = ({ username, updatedAt }) => {
   return (
     <div className="w-full flex items-center justify-start bg-white p-2 space-x-2 rounded-md">
       <UserIcon />
@@ -20,3 +20,5 @@ export const UserBar: React.VFC<User> = ({ username, updatedAt }) => {
     </div>
   )
 }
+
+export default UserBar

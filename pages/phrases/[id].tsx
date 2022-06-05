@@ -1,12 +1,15 @@
 import { GetStaticProps, GetStaticPaths } from 'next'
-import { getAllPhraseIds, getPhraseData } from '../../lib/fetch'
+import { getAllPhraseIds, getPhraseData, getCommentData } from '../../lib/fetch'
 import Layout from '../../components/templates/Layout'
-import { Phrase } from '../../types/types'
+import { Phrase, Comment } from '../../types/types'
 import PhraseCard from '../../components/molecules/PhraseCard'
 import CardCase from '../../components/atoms/CardCase'
 import { useRouter } from 'next/router'
 
-const PhraseDetail: React.VFC<{ phrase: Phrase }> = ({ phrase }) => {
+const PhraseDetail: React.VFC<{ phrase: Phrase; comments: Comment[] }> = ({
+  phrase,
+  comments,
+}) => {
   const router = useRouter()
   if (router.isFallback || !phrase) {
     return <div>Loading...</div>
@@ -14,7 +17,7 @@ const PhraseDetail: React.VFC<{ phrase: Phrase }> = ({ phrase }) => {
   return (
     <Layout title="phrase detail">
       <CardCase hover={false}>
-        <PhraseCard phrase={phrase} />
+        <PhraseCard phrase={phrase} comments={comments} />
       </CardCase>
     </Layout>
   )
@@ -31,8 +34,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const phrase = await getPhraseData(ctx.params.id as string)
+  const comments = await getCommentData(ctx.params.id as string)
   return {
-    props: { phrase },
+    props: { phrase, comments },
     revalidate: 1,
   }
 }
