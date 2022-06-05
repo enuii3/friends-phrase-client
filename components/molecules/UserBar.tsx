@@ -1,5 +1,5 @@
 import { formatDate } from '../../utils/formatDate'
-import { UserIcon } from '../atoms/UserIcon'
+import UserIcon from '../atoms/UserIcon'
 
 interface User {
   username: string

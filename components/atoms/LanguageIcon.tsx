@@ -1,11 +1,11 @@
 import Image from 'next/image'
 import { LanguageCode } from '../../types/types'
 
-export const LanguageIcon: React.VFC<{ languageCode: LanguageCode }> = ({
+const LanguageIcon: React.VFC<{ languageCode: LanguageCode }> = ({
   languageCode,
 }) => {
   return (
-    <div className="flex justify-center items-center w-1/6 sm:w-1/12">
+    <div className="flex justify-center w-1/6 sm:w-1/12">
       <Image
         src={`/${languageCode}.svg`}
         alt={languageCode}
@@ -15,3 +15,5 @@ export const LanguageIcon: React.VFC<{ languageCode: LanguageCode }> = ({
     </div>
   )
 }
+
+export default LanguageIcon
