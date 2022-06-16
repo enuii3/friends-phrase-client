@@ -43,6 +43,7 @@ export type Phrase = {
   translatedWord: string
   translatedWordLanguage: LanguageCode
   username: string
+  comments: string[]
   createdAt: string
   updatedAt: string
 }
