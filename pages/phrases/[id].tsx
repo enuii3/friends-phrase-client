@@ -3,7 +3,7 @@ import { getAllPhraseIds, getPhraseData, getCommentData } from '../../lib/fetch'
 import Layout from '../../components/templates/Layout'
 import { Phrase, Comment } from '../../types/types'
 import PhraseCard from '../../components/molecules/PhraseCard'
-import CardCase from '../../components/atoms/CardCase'
+import PhraseCardCase from '../../components/atoms/PhraseCardCase'
 import { useRouter } from 'next/router'
 
 const PhraseDetail: React.VFC<{ phrase: Phrase; comments: Comment[] }> = ({
@@ -16,9 +16,9 @@ const PhraseDetail: React.VFC<{ phrase: Phrase; comments: Comment[] }> = ({
   }
   return (
     <Layout title="phrase detail">
-      <CardCase hover={false}>
+      <PhraseCardCase hover={false}>
         <PhraseCard phrase={phrase} comments={comments} />
-      </CardCase>
+      </PhraseCardCase>
     </Layout>
   )
 }

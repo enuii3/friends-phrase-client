@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import { Phrase } from '../types/types'
 import { useEffect, useState } from 'react'
 import TextField from '@mui/material/TextField'
-import CardCase from '../components/atoms/CardCase'
+import PhraseCardCase from '../components/atoms/PhraseCardCase'
 import Button from '../components/atoms/Button'
 import FormControl from '@mui/material/FormControl'
 import FormItemLanguage from '../components/FormItemLanguage'
@@ -65,7 +65,7 @@ const CreatePhrase: React.FC<Phrase> = () => {
 
   return (
     <Layout title="create phrase">
-      <CardCase>
+      <PhraseCardCase>
         <form onSubmit={postPhrase} className="w-full space-y-6 flex flex-col">
           <FormControl className="w-full">
             <TextField
@@ -94,7 +94,7 @@ const CreatePhrase: React.FC<Phrase> = () => {
           />
           <Button text="投稿" />
         </form>
-      </CardCase>
+      </PhraseCardCase>
     </Layout>
   )
 }
