@@ -3,7 +3,7 @@ import { GetStaticProps } from 'next'
 import { getAllPhrasesData } from '../lib/fetch'
 import { Phrases } from '../types/types'
 import PhraseCard from '../components/molecules/PhraseCard'
-import CardCase from '../components/atoms/CardCase'
+import PhraseCardCase from '../components/atoms/PhraseCardCase'
 import Link from 'next/link'
 
 const MainPage: React.VFC<Phrases> = ({ phrases }) => {
@@ -15,9 +15,9 @@ const MainPage: React.VFC<Phrases> = ({ phrases }) => {
             <li key={phrase.id}>
               <Link href={`/phrases/${phrase.id}`}>
                 <a>
-                  <CardCase hover={true}>
+                  <PhraseCardCase hover={true}>
                     <PhraseCard phrase={phrase} />
-                  </CardCase>
+                  </PhraseCardCase>
                 </a>
               </Link>
             </li>
