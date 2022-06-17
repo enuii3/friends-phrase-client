@@ -32,44 +32,46 @@ const AuthenIcon: React.VFC = () => {
   return (
     <>
       {loginUserName ? (
-        <Menu as="div" className="relative inline-block text-left">
-          <Menu.Button className="flex items-center text-white hover:text-gray-500">
-            {loginUserName}
-          </Menu.Button>
+        <div className="flex items-center">
+          <Menu as="div" className="relative inline-block text-left">
+            <Menu.Button className="flex items-center text-white hover:text-gray-500">
+              {loginUserName}
+            </Menu.Button>
 
-          <Transition
-            as={Fragment}
-            enter="transition ease-out duration-100"
-            enterFrom="transform opacity-0 scale-95"
-            enterTo="transform opacity-100 scale-100"
-            leave="transition ease-in duration-75"
-            leaveFrom="transform opacity-100 scale-100"
-            leaveTo="transform opacity-0 scale-95"
-          >
-            <Menu.Items className="origin-top-right absolute right-0 mt-2 w-32 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-              {/* My Pageは後日実装 */}
-              <Menu.Item>
-                <button
-                  className={
-                    'text-gray-700 block w-full text-center px-4 py-2 text-sm'
-                  }
-                >
-                  My Page
-                </button>
-              </Menu.Item>
-              <Menu.Item>
-                <button
-                  className={
-                    'text-gray-700 block w-full text-center px-4 py-2 text-sm'
-                  }
-                  onClick={logOut}
-                >
-                  Log Out
-                </button>
-              </Menu.Item>
-            </Menu.Items>
-          </Transition>
-        </Menu>
+            <Transition
+              as={Fragment}
+              enter="transition ease-out duration-100"
+              enterFrom="transform opacity-0 scale-95"
+              enterTo="transform opacity-100 scale-100"
+              leave="transition ease-in duration-75"
+              leaveFrom="transform opacity-100 scale-100"
+              leaveTo="transform opacity-0 scale-95"
+            >
+              <Menu.Items className="origin-top-right absolute right-0 mt-2 w-32 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                {/* My Pageは後日実装 */}
+                <Menu.Item>
+                  <button
+                    className={
+                      'text-gray-700 block w-full text-center px-4 py-2 text-sm'
+                    }
+                  >
+                    My Page
+                  </button>
+                </Menu.Item>
+                <Menu.Item>
+                  <button
+                    className={
+                      'text-gray-700 block w-full text-center px-4 py-2 text-sm'
+                    }
+                    onClick={logOut}
+                  >
+                    Log Out
+                  </button>
+                </Menu.Item>
+              </Menu.Items>
+            </Transition>
+          </Menu>
+        </div>
       ) : (
         <Link href="/auth" passHref>
           <svg
