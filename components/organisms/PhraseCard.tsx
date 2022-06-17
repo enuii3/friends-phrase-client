@@ -1,12 +1,22 @@
-import UserBar from './UserBar'
-import LanguageTextLine from './LanguageTextLine'
+import UserBar from '../molecules/UserBar'
+import LanguageTextLine from '../molecules/LanguageTextLine'
 import { Phrase, Comment } from '../../types/types'
-import CommentCard from './CommentCard'
+import WhiteCardCase from '../atoms/WhiteCardCase'
+import PhraseCardIconBar from '../molecules/PhraseCardIconBar'
+import CommentCard from '../molecules/CommentCard'
 
 const PhraseCard: React.VFC<{ phrase: Phrase; comments?: Comment[] }> = ({
   phrase,
   comments,
 }) => {
+  const countComment = (commentCount: string[]): number => {
+    try {
+      return commentCount.length
+    } catch (error) {
+      return 0
+    }
+  }
+
   return (
     <div className="flex flex-col w-full space-y-2">
       <LanguageTextLine text={phrase.text} languageCode={phrase.textLanguage} />
@@ -15,8 +25,10 @@ const PhraseCard: React.VFC<{ phrase: Phrase; comments?: Comment[] }> = ({
         text={phrase.translatedWord}
         languageCode={phrase.translatedWordLanguage}
       />
-
-      <UserBar username={phrase.username} updatedAt={phrase.updatedAt} />
+      <WhiteCardCase>
+        <UserBar username={phrase.username} updatedAt={phrase.updatedAt} />
+      </WhiteCardCase>
+      <PhraseCardIconBar commentCount={countComment(phrase.comments)} />
       <ul className="w-full space-y-2">
         {comments &&
           comments.map((comment) => (
