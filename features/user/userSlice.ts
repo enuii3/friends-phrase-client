@@ -21,7 +21,7 @@ export const fetchAsyncRegisterUser = createAsyncThunk<
 >('user/register_user', async (params, { rejectWithValue }) => {
   try {
     const res = await axios.post(
-      `${process.env.NEXT_PUBLIC_RESTAPI_URL}/api/user/`,
+      `${process.env.NEXT_PUBLIC_RESTAPI_URL}/api/users/`,
       params,
       {
         headers: {
