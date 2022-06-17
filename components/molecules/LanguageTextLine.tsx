@@ -4,7 +4,7 @@ import { LanguageCode } from '../../types/types'
 type TextLanguageCode = {
   text: string
   languageCode: LanguageCode
-  bgColor?: 'bg-gray-300'
+  bgColor?: 'bg-gray-100'
 }
 
 const LanguageTextLine: React.VFC<TextLanguageCode> = ({
@@ -12,8 +12,8 @@ const LanguageTextLine: React.VFC<TextLanguageCode> = ({
   languageCode,
   bgColor = null,
 }) => {
-  const defaultStyle = 'w-full flex justify-start items-center space-x-2'
-  const activeStyle = `${defaultStyle} bg-gray-300 rounded-md p-1 md:p-2`
+  const defaultStyle = 'w-full flex justify-center items-center space-x-2'
+  const activeStyle = `${defaultStyle} bg-gray-200 rounded-md p-1`
   const style = bgColor ? activeStyle : defaultStyle
   return (
     <div className={style}>

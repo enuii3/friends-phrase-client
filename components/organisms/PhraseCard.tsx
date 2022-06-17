@@ -33,7 +33,9 @@ const PhraseCard: React.VFC<{ phrase: Phrase; comments?: Comment[] }> = ({
         {comments &&
           comments.map((comment) => (
             <li key={comment.id}>
-              <CommentCard comment={comment} />
+              <WhiteCardCase>
+                <CommentCard comment={comment} />
+              </WhiteCardCase>
             </li>
           ))}
       </ul>
