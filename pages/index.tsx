@@ -2,7 +2,7 @@ import Layout from '../components/templates/Layout'
 import { GetStaticProps } from 'next'
 import { getAllPhrasesData } from '../lib/fetch'
 import { Phrases } from '../types/types'
-import PhraseCard from '../components/molecules/PhraseCard'
+import PhraseCard from '../components/organisms/PhraseCard'
 import PhraseCardCase from '../components/atoms/PhraseCardCase'
 import Link from 'next/link'
 

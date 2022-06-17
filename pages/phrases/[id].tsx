@@ -1,10 +1,10 @@
+import { useRouter } from 'next/router'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import { getAllPhraseIds, getPhraseData, getCommentData } from '../../lib/fetch'
 import Layout from '../../components/templates/Layout'
 import { Phrase, Comment } from '../../types/types'
-import PhraseCard from '../../components/molecules/PhraseCard'
+import PhraseCard from '../../components/organisms/PhraseCard'
 import PhraseCardCase from '../../components/atoms/PhraseCardCase'
-import { useRouter } from 'next/router'
 
 const PhraseDetail: React.VFC<{ phrase: Phrase; comments: Comment[] }> = ({
   phrase,
