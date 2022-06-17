@@ -1,9 +1,10 @@
 import UserBar from '../molecules/UserBar'
 import LanguageTextLine from '../molecules/LanguageTextLine'
 import { Phrase, Comment } from '../../types/types'
+import CommentCard from '../molecules/CommentCard'
+import CommentFormCard from '../molecules/CommentFormCard'
 import WhiteCardCase from '../atoms/WhiteCardCase'
 import PhraseCardIconBar from '../molecules/PhraseCardIconBar'
-import CommentCard from '../molecules/CommentCard'
 
 const PhraseCard: React.VFC<{ phrase: Phrase; comments?: Comment[] }> = ({
   phrase,
@@ -29,16 +30,20 @@ const PhraseCard: React.VFC<{ phrase: Phrase; comments?: Comment[] }> = ({
         <UserBar username={phrase.username} updatedAt={phrase.updatedAt} />
       </WhiteCardCase>
       <PhraseCardIconBar commentCount={countComment(phrase.comments)} />
-      <ul className="w-full space-y-2">
-        {comments &&
-          comments.map((comment) => (
-            <li key={comment.id}>
-              <WhiteCardCase>
-                <CommentCard comment={comment} />
-              </WhiteCardCase>
-            </li>
-          ))}
-      </ul>
+      {comments && (
+        <>
+          <CommentFormCard phraseId={phrase.id} />
+          <ul className="w-full space-y-2">
+            {comments.map((comment) => (
+              <li key={comment.id}>
+                <WhiteCardCase>
+                  <CommentCard comment={comment} />
+                </WhiteCardCase>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
     </div>
   )
 }
