@@ -39,7 +39,7 @@ const CreatePhrase: React.FC<Phrase> = () => {
     }
     try {
       const res = await axios.post(
-        `${process.env.NEXT_PUBLIC_RESTAPI_URL}/api/phrase/`,
+        `${process.env.NEXT_PUBLIC_RESTAPI_URL}/api/phrases/`,
         packet,
         {
           headers: {
