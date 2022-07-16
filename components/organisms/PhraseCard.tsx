@@ -5,11 +5,13 @@ import CommentCard from '../molecules/CommentCard'
 import CommentFormCard from '../molecules/CommentFormCard'
 import WhiteCardCase from '../atoms/WhiteCardCase'
 import PhraseCardIconBar from '../molecules/PhraseCardIconBar'
+import { useRouter } from 'next/router'
 
 const PhraseCard: React.VFC<{ phrase: Phrase; comments?: Comment[] }> = ({
   phrase,
   comments,
 }) => {
+  const router = useRouter()
   const countComment = (commentCount: string[]): number => {
     try {
       return commentCount.length
@@ -18,8 +20,13 @@ const PhraseCard: React.VFC<{ phrase: Phrase; comments?: Comment[] }> = ({
     }
   }
 
+  const routeDetailPhrase = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+    e.stopPropagation()
+    router.push(`/phrases/${phrase.id}`)
+  }
+
   return (
-    <div className="flex flex-col w-full space-y-2">
+    <div className="flex flex-col w-full space-y-2" onClick={routeDetailPhrase}>
       <LanguageTextLine text={phrase.text} languageCode={phrase.textLanguage} />
 
       <LanguageTextLine
@@ -27,7 +34,11 @@ const PhraseCard: React.VFC<{ phrase: Phrase; comments?: Comment[] }> = ({
         languageCode={phrase.translatedWordLanguage}
       />
       <WhiteCardCase>
-        <UserBar username={phrase.username} updatedAt={phrase.updatedAt} />
+        <UserBar
+          username={phrase.user.username}
+          icon={phrase.user.icon}
+          updatedAt={phrase.updatedAt}
+        />
       </WhiteCardCase>
       <PhraseCardIconBar commentCount={countComment(phrase.comments)} />
       {comments && (

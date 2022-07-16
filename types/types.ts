@@ -1,3 +1,9 @@
+export type User = {
+  username: string
+  icon: string
+  updatedAt?: string
+}
+
 export type RegisterUser = {
   id: string
   username: string
@@ -12,13 +18,20 @@ export type ParamsRegisterUser = {
   password: string
 }
 
-export type LoginUser = {
-  username: string
-}
-
 export type ParamsLoginUser = {
   email: string
   password: string
+}
+
+export type LoginUser = {
+  username: string
+  icon: string
+}
+
+export type PostUser = {
+  id: string
+  username: string
+  icon: string
 }
 
 export type ErrorMessage = {
@@ -42,7 +55,7 @@ export type Phrase = {
   textLanguage: LanguageCode
   translatedWord: string
   translatedWordLanguage: LanguageCode
-  username: string
+  user: PostUser
   comments: string[]
   createdAt: string
   updatedAt: string
@@ -54,7 +67,7 @@ export type Comment = {
   textLanguage: LanguageCode
   createdAt: string
   updatedAt: string
-  username: string
+  user: PostUser
   phrase: string
 }
 

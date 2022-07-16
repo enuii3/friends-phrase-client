@@ -17,7 +17,7 @@ import { setErrorMessage } from '../../features/user/userSlice'
 const cookie = new Cookie()
 
 const CommentFormCard: React.VFC<{ phraseId: string }> = ({ phraseId }) => {
-  const loginUserName = useAppSelector(selectLoginUser)
+  const loginUser = useAppSelector(selectLoginUser)
   const [text, setText] = useState('')
   const [textLanguage, setTextLanguage] = useState('jp')
   const dispatch = useAppDispatch()
@@ -58,9 +58,9 @@ const CommentFormCard: React.VFC<{ phraseId: string }> = ({ phraseId }) => {
 
   return (
     <WhiteCardCase>
-      {loginUserName ? (
+      {loginUser.username !== '' ? (
         <div className="space-y-2">
-          <UserBar username={loginUserName} />
+          <UserBar username={loginUser.username} icon={loginUser.icon} />
           <form
             onSubmit={postComment}
             className="w-full space-y-4 p-4 flex flex-col bg-gray-100 rounded-md"
