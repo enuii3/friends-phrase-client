@@ -1,4 +1,3 @@
-import { cardHeaderClasses } from '@mui/material'
 import fetch from 'node-fetch'
 import { Phrase, Comment } from '../types/types'
 
@@ -12,8 +11,11 @@ export const getAllPhraseIds = async () => {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_RESTAPI_URL}/api/phrases/`
     )
+    console.log('@@@@@@@@@@@@@@@1@@@@@@@@@@@@@')
     const phrases = (await res.json()) as Phrase[]
+    console.log('@@@@@@@@@@@@@@@2@@@@@@@@@@@@@')
     return phrases.map((phrase) => {
+      console.log('@@@@@@@@@@@@@@@2@@@@@@@@@@@@@')
       return {
         params: {
           id: String(phrase.id),
