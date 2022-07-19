@@ -1,3 +1,4 @@
+import { cardHeaderClasses } from '@mui/material'
 import fetch from 'node-fetch'
 import { Phrase, Comment } from '../types/types'
 
@@ -7,15 +8,21 @@ export const getAllPhrasesData = async (): Promise<Phrase[]> => {
 }
 
 export const getAllPhraseIds = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_RESTAPI_URL}/api/phrases/`)
-  const phrases = (await res.json()) as Phrase[]
-  return phrases.map((phrase) => {
-    return {
-      params: {
-        id: String(phrase.id),
-      },
-    }
-  })
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_RESTAPI_URL}/api/phrases/`
+    )
+    const phrases = (await res.json()) as Phrase[]
+    return phrases.map((phrase) => {
+      return {
+        params: {
+          id: String(phrase.id),
+        },
+      }
+    })
+  } catch (error) {
+    console.log(`error is ${error}i!!!!!!!!!!!!!!!111`)
+  }
 }
 
 export const getPhraseData = async (id: string) => {
