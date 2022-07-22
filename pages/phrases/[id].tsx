@@ -25,10 +25,14 @@ const PhraseDetail: React.VFC<{ phrase: Phrase; comments: Comment[] }> = ({
 export default PhraseDetail
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = await getAllPhraseIds()
-  return {
-    paths,
-    fallback: true,
+  try {
+    const paths = await getAllPhraseIds()
+    return {
+      paths,
+      fallback: true,
+    }
+  } catch (error) {
+    console.log(`error is ${error}!!!!!!!!!!!!!2`)
   }
 }
 
