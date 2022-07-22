@@ -5,12 +5,13 @@ import { Menu, Transition } from '@headlessui/react'
 import Cookie from 'universal-cookie'
 import { fetchAsyncGetLoginUser } from '../../features/user/userSlice'
 import { useAppDispatch, useAppSelector } from '../../app/store'
+import UserIcon from './UserIcon'
 
 const cookie = new Cookie()
 
 const AuthenIcon: React.VFC = () => {
   const dispatch = useAppDispatch()
-  const loginUserName = useAppSelector(selectLoginUser)
+  const loginUser = useAppSelector(selectLoginUser)
 
   useEffect(() => {
     const getLoginUser = async () => {
@@ -31,11 +32,11 @@ const AuthenIcon: React.VFC = () => {
 
   return (
     <>
-      {loginUserName ? (
+      {loginUser.icon !== '' ? (
         <div className="flex items-center">
           <Menu as="div" className="relative inline-block text-left">
             <Menu.Button className="flex items-center text-white hover:text-gray-500">
-              {loginUserName}
+              <UserIcon icon={loginUser.icon} iconSize={25} />
             </Menu.Button>
 
             <Transition

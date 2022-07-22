@@ -15,7 +15,7 @@ const Header: React.FC = () => {
               FriendsPhrase
             </a>
           </Link>
-          <div className="w-full flex justify-end space-x-4 md:space-x-6 lg:space-x-8">
+          <div className="w-full flex justify-end items-center space-x-4 md:space-x-6 lg:space-x-8">
             {/* 投稿機能 後日実装予定 */}
             <CreatePhraseIcon />
             <AuthenIcon />

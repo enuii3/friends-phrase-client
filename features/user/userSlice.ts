@@ -91,6 +91,7 @@ export const fetchAsyncGetLoginUser = createAsyncThunk<
 
 const initialState: LoginUser & ErrorMessage = {
   username: '',
+  icon: '',
   errorMessage: '',
 }
 
@@ -142,6 +143,7 @@ export const userSlice = createSlice({
         return {
           ...state,
           username: action.payload.username,
+          icon: action.payload.icon,
         }
       }
     )
@@ -152,7 +154,7 @@ export const userSlice = createSlice({
 })
 
 export const { setErrorMessage, resetErrorMessage } = userSlice.actions
-export const selectLoginUser = (state: RootState) => state.user.username
+export const selectLoginUser = (state: RootState) => state.user
 export const selectErrorMessage = (state: RootState) => state.user.errorMessage
 
 export default userSlice.reducer

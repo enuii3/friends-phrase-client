@@ -4,14 +4,18 @@ import UserBar from './UserBar'
 
 const CommentCard: React.VFC<{ comment: Comment }> = ({ comment }) => {
   return (
-    <>
-      <UserBar username={comment.user.username} updatedAt={comment.updatedAt} />
+    <div className="space-y-2">
+      <UserBar
+        username={comment.user.username}
+        icon={comment.user.icon}
+        updatedAt={comment.updatedAt}
+      />
       <LanguageTextLine
         bgColor="bg-gray-100"
         text={comment.text}
         languageCode={comment.textLanguage}
       />
-    </>
+    </div>
   )
 }
 

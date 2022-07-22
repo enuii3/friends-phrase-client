@@ -1,3 +1,9 @@
+export type User = {
+  username: string
+  icon: string
+  updatedAt?: string
+}
+
 export type RegisterUser = {
   id: string
   username: string
@@ -12,13 +18,14 @@ export type ParamsRegisterUser = {
   password: string
 }
 
-export type LoginUser = {
-  username: string
-}
-
 export type ParamsLoginUser = {
   email: string
   password: string
+}
+
+export type LoginUser = {
+  username: string
+  icon: string
 }
 
 export type PostUser = {
