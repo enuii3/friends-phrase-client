@@ -21,6 +21,12 @@ export type ParamsLoginUser = {
   password: string
 }
 
+export type PostUser = {
+  id: string
+  username: string
+  icon: string
+}
+
 export type ErrorMessage = {
   errorMessage?: string
 }
@@ -42,7 +48,7 @@ export type Phrase = {
   textLanguage: LanguageCode
   translatedWord: string
   translatedWordLanguage: LanguageCode
-  username: string
+  user: PostUser
   comments: string[]
   createdAt: string
   updatedAt: string
@@ -54,7 +60,7 @@ export type Comment = {
   textLanguage: LanguageCode
   createdAt: string
   updatedAt: string
-  username: string
+  user: PostUser
   phrase: string
 }
 

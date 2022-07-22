@@ -5,7 +5,7 @@ import UserBar from './UserBar'
 const CommentCard: React.VFC<{ comment: Comment }> = ({ comment }) => {
   return (
     <>
-      <UserBar username={comment.username} updatedAt={comment.updatedAt} />
+      <UserBar username={comment.user.username} updatedAt={comment.updatedAt} />
       <LanguageTextLine
         bgColor="bg-gray-100"
         text={comment.text}
