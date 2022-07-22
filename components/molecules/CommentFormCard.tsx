@@ -32,7 +32,7 @@ const CommentFormCard: React.VFC<{ phraseId: string }> = ({ phraseId }) => {
     }
     try {
       const res = await axios.post(
-        `${process.env.NEXT_PUBLIC_RESTAPI_URL}/api/comment/`,
+        `${process.env.NEXT_PUBLIC_RESTAPI_URL}/api/comments/`,
         packet,
         {
           headers: {
