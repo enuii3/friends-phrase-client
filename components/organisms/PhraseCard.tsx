@@ -27,7 +27,7 @@ const PhraseCard: React.VFC<{ phrase: Phrase; comments?: Comment[] }> = ({
         languageCode={phrase.translatedWordLanguage}
       />
       <WhiteCardCase>
-        <UserBar username={phrase.username} updatedAt={phrase.updatedAt} />
+        <UserBar username={phrase.user.username} updatedAt={phrase.updatedAt} />
       </WhiteCardCase>
       <PhraseCardIconBar commentCount={countComment(phrase.comments)} />
       {comments && (
