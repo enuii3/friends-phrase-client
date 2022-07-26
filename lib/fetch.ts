@@ -20,7 +20,7 @@ export const getAllPhraseIds = async () => {
 
 export const getPhraseData = async (id: string) => {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_RESTAPI_URL}/api/phrases/${id}`
+    `${process.env.NEXT_PUBLIC_RESTAPI_URL}/api/phrases/${id}/`
   )
   return (await res.json()) as Phrase
 }
