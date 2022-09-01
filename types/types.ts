@@ -45,10 +45,6 @@ export type Jwt = {
 
 export type AccessToken = Pick<Jwt, 'access'>
 
-export type Phrases = {
-  phrases: Phrase[]
-}
-
 export type Phrase = {
   id: string
   text: string

@@ -1,9 +1,9 @@
 import fetch from 'node-fetch'
 import { Phrase, Comment } from '../types/types'
 
-export const getAllPhrasesData = async (): Promise<Phrase[]> => {
+export const getAllPhrasesData = async () => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_RESTAPI_URL}/api/phrases/`)
-  return (await res.json()) as Phrase[]
+  return await res.json()
 }
 
 export const getAllPhraseIds = async () => {

@@ -5,15 +5,56 @@ import Layout from '../../components/templates/Layout'
 import { Phrase, Comment } from '../../types/types'
 import PhraseCard from '../../components/organisms/PhraseCard'
 import PhraseCardCase from '../../components/atoms/PhraseCardCase'
+import axios from 'axios'
+import useSWR from 'swr'
 
-const PhraseDetail: React.VFC<{ phrase: Phrase; comments: Comment[] }> = ({
-  phrase,
-  comments,
+const axiosPhraseFetcher = async (id: string) => {
+  const result = await axios.get<Phrase>(
+    `${process.env.NEXT_PUBLIC_RESTAPI_URL}/api/phrases/${id}/`
+  )
+  return result.data
+}
+
+const axiosCommentsFetcher = async () => {
+  const result = await axios.get<Comment[]>(
+    `${process.env.NEXT_PUBLIC_RESTAPI_URL}/api/comments/`
+  )
+  return result.data
+}
+
+interface STATICPROPS {
+  staticPhrase: Phrase
+  staticComments: Comment[]
+}
+
+const PhraseDetail: React.VFC<STATICPROPS> = ({
+  staticPhrase,
+  staticComments,
 }) => {
+  const { data: phrase, error: phraseError } = useSWR(
+    staticPhrase ? staticPhrase.id : null,
+    axiosPhraseFetcher,
+    {
+      fallbackData: staticPhrase,
+      revalidateOnMount: true,
+    }
+  )
+
+  const { data: comments, error: commentsError } = useSWR(
+    'commentsFetch',
+    axiosCommentsFetcher,
+    {
+      fallbackData: staticComments,
+      revalidateOnMount: true,
+    }
+  )
+
   const router = useRouter()
   if (router.isFallback || !phrase) {
     return <div>Loading...</div>
   }
+  if (phraseError || commentsError) return <span>Error!</span>
+
   return (
     <Layout title="phrase detail">
       <PhraseCardCase hover={false}>
@@ -33,10 +74,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
-  const phrase = await getPhraseData(ctx.params.id as string)
-  const comments = await getCommentData(ctx.params.id as string)
+  const staticPhrase = await getPhraseData(ctx.params.id as string)
+  const staticComments = await getCommentData(ctx.params.id as string)
   return {
-    props: { phrase, comments },
+    props: { staticPhrase, staticComments },
     revalidate: 1,
   }
 }
