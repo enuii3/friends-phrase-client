@@ -1,12 +1,31 @@
 import Layout from '../components/templates/Layout'
 import { GetStaticProps } from 'next'
 import { getAllPhrasesData } from '../lib/fetch'
-import { Phrases } from '../types/types'
+import { Phrase } from '../types/types'
 import PhraseCard from '../components/organisms/PhraseCard'
 import PhraseCardCase from '../components/atoms/PhraseCardCase'
 import Link from 'next/link'
+import axios from 'axios'
+import useSWR from 'swr'
 
-const MainPage: React.VFC<Phrases> = ({ phrases }) => {
+const axiosFetcher = async () => {
+  const result = await axios.get<Phrase[]>(
+    `${process.env.NEXT_PUBLIC_RESTAPI_URL}/api/phrases/`
+  )
+  return result.data
+}
+
+interface STATICPROPS {
+  staticPhrases: Phrase[]
+}
+
+const MainPage: React.VFC<STATICPROPS> = ({ staticPhrases }) => {
+  const { data: phrases, error } = useSWR('phrasesFetch', axiosFetcher, {
+    fallbackData: staticPhrases,
+    revalidateOnMount: true,
+  })
+  if (error) return <span>Error!</span>
+
   return (
     <Layout title="FriendsPhrase">
       <ul className="w-full">
@@ -29,9 +48,9 @@ const MainPage: React.VFC<Phrases> = ({ phrases }) => {
 export default MainPage
 
 export const getStaticProps: GetStaticProps = async () => {
-  const phrases = await getAllPhrasesData()
+  const staticPhrases = await getAllPhrasesData()
   return {
-    props: { phrases },
+    props: { staticPhrases },
     revalidate: 1,
   }
 }
