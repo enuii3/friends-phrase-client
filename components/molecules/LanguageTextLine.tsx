@@ -1,11 +1,5 @@
 import LanguageIcon from '../atoms/LanguageIcon'
-import { LanguageCode } from '../../types/types'
-
-type TextLanguageCode = {
-  text: string
-  languageCode: LanguageCode
-  bgColor?: 'bg-gray-100'
-}
+import { TextLanguageCode } from '../../types/types'
 
 const LanguageTextLine: React.VFC<TextLanguageCode> = ({
   text,

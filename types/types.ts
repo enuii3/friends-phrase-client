@@ -73,3 +73,9 @@ export type ParamsPhrase = Pick<
 >
 
 export type LanguageCode = 'en' | 'jp'
+
+export type TextLanguageCode = {
+  text: string
+  languageCode: LanguageCode
+  bgColor?: 'bg-gray-100'
+}
