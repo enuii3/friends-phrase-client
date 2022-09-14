@@ -20,13 +20,14 @@ const PhraseCard: React.VFC<{ phrase: Phrase; comments?: Comment[] }> = ({
     }
   }
 
-  const routeDetailPhrase = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
-    e.stopPropagation()
-    router.push(`/phrases/${phrase.id}`)
-  }
+  // const routeDetailPhrase = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+  //   e.stopPropagation()
+  //   router.push(`/phrases/${phrase.id}`)
+  // }
 
   return (
-    <div className="flex flex-col w-full space-y-2" onClick={routeDetailPhrase}>
+    // <div className="flex flex-col w-full space-y-2" onClick={routeDetailPhrase}>
+    <div className="flex flex-col w-full space-y-2">
       <LanguageTextLine text={phrase.text} languageCode={phrase.textLanguage} />
 
       <LanguageTextLine
