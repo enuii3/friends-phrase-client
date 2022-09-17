@@ -52,6 +52,7 @@ const AuthenIcon: React.VFC = () => {
                 {/* My Pageは後日実装 */}
                 <Menu.Item>
                   <button
+                    data-testid="mypage-button"
                     className={
                       'text-gray-700 block w-full text-center px-4 py-2 text-sm'
                     }
@@ -61,6 +62,7 @@ const AuthenIcon: React.VFC = () => {
                 </Menu.Item>
                 <Menu.Item>
                   <button
+                    data-testid="logout-button"
                     className={
                       'text-gray-700 block w-full text-center px-4 py-2 text-sm'
                     }
