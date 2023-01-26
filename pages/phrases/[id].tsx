@@ -15,19 +15,20 @@ const axiosPhraseFetcher = async (id: string) => {
   return result.data
 }
 
-const axiosCommentsFetcher = async () => {
-  const result = await axios.get<Comment[]>(
+const axiosCommentsFetcher = async (phraseId: string) => {
+  const res = await axios.get<Comment[]>(
     `${process.env.NEXT_PUBLIC_RESTAPI_URL}/api/comments/`
   )
-  return result.data
+  const comments = res.data
+  return comments.filter((comment) => comment.phrase === phraseId)
 }
 
-interface STATICPROPS {
+interface StaticProps {
   staticPhrase: Phrase
   staticComments: Comment[]
 }
 
-const PhraseDetail: React.VFC<STATICPROPS> = ({
+const PhraseDetail: React.VFC<StaticProps> = ({
   staticPhrase,
   staticComments,
 }) => {
@@ -40,7 +41,7 @@ const PhraseDetail: React.VFC<STATICPROPS> = ({
     }
   )
 
-  const { data: comments, error: commentsError } = useSWR(
+  const { error: commentsError } = useSWR(
     'commentsFetch',
     axiosCommentsFetcher,
     {
@@ -58,7 +59,7 @@ const PhraseDetail: React.VFC<STATICPROPS> = ({
   return (
     <Layout title="phrase detail">
       <PhraseCardCase hover={false}>
-        <PhraseCard phrase={phrase} comments={comments} />
+        <PhraseCard phrase={staticPhrase} comments={staticComments} />
       </PhraseCardCase>
     </Layout>
   )
